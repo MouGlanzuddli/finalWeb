@@ -33,3 +33,70 @@ img{
     text-align: center;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
+/* Default styles - Mobile-first approach */
+
+/* One-column grid for mobile view */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+/* Circular shape for figures (only on tablet view and above) */
+figure {
+  border-radius: 50%;
+}
+
+/* Mobile-specific styles */
+figure img {
+  width: 100%;
+}
+
+/* Tablet view: trigger at 772px */
+@media (min-width: 772px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* Two-column grid */
+  }
+  
+  figure {
+    border-radius: 50%; /* Make figures circular */
+  }
+
+  /* Last figure takes up both columns */
+  .grid figure:last-child {
+    grid-column: span 2;
+  }
+}
+
+/* Large screen view: trigger at 992px */
+@media (min-width: 992px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr); /* Three-column grid */
+  }
+
+  /* Every third figure takes up both columns */
+  .grid figure:nth-child(3n) {
+    grid-column: span 2;
+  }
+
+  figure {
+    border-radius: 0; /* Remove border radius on large screens */
+  }
+}
+
+/* prefers-reduced-motion: Remove scroll behavior */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto; /* Remove smooth scrolling */
+  }
+}
+
+/* Dark mode: Adjust styles for dark color schemes */
+@media (prefers-color-scheme: dark) {
+  figure {
+    background-color: #333; /* Dark background */
+    color: #f0e68c; /* Lighter yellow-ish color for text */
+    border: 2px solid black; /* Set border color to black */
+  }
+}
